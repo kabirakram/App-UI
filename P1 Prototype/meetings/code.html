@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Meetings - SyncTeam</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "surface-bright": "#f7fafc",
+                      "tertiary-fixed-dim": "#7ed5d4",
+                      "surface-container-highest": "#e0e3e5",
+                      "on-primary-container": "#86a0cd",
+                      "primary-container": "#1a365d",
+                      "surface-tint": "#455f88",
+                      "surface-container-low": "#f1f4f6",
+                      "secondary-fixed-dim": "#bcc7dd",
+                      "outline": "#74777f",
+                      "on-error-container": "#93000a",
+                      "on-tertiary-fixed-variant": "#004f50",
+                      "error-container": "#ffdad6",
+                      "on-secondary-fixed-variant": "#3c475a",
+                      "on-tertiary-container": "#55acac",
+                      "surface-dim": "#d7dadc",
+                      "surface-container-high": "#e5e9eb",
+                      "on-secondary-container": "#586377",
+                      "on-surface": "#181c1e",
+                      "secondary-fixed": "#d8e3fa",
+                      "on-surface-variant": "#43474e",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-primary": "#adc7f7",
+                      "on-primary-fixed": "#001b3c",
+                      "surface-variant": "#e0e3e5",
+                      "outline-variant": "#c4c6cf",
+                      "on-tertiary-fixed": "#002020",
+                      "tertiary-container": "#003d3d",
+                      "on-secondary-fixed": "#111c2c",
+                      "on-error": "#ffffff",
+                      "primary-fixed": "#d6e3ff",
+                      "error": "#ba1a1a",
+                      "tertiary-fixed": "#9bf1f1",
+                      "on-background": "#181c1e",
+                      "on-primary-fixed-variant": "#2d476f",
+                      "primary-fixed-dim": "#adc7f7",
+                      "secondary-container": "#d5e0f7",
+                      "background": "#f7fafc",
+                      "surface-container": "#ebeef0",
+                      "on-primary": "#ffffff",
+                      "inverse-surface": "#2d3133",
+                      "secondary": "#545f72",
+                      "inverse-on-surface": "#eef1f3",
+                      "primary": "#002045",
+                      "tertiary": "#002626",
+                      "surface": "#f7fafc"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "sm": "8px",
+                      "container-margin": "20px",
+                      "gutter": "16px",
+                      "md": "16px",
+                      "lg": "24px",
+                      "unit": "4px",
+                      "xs": "4px",
+                      "xl": "32px"
+              },
+              "fontFamily": {
+                      "label-sm": ["Inter"],
+                      "display-lg-mobile": ["Inter"],
+                      "display-lg": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "headline-sm": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "label-md": ["Inter"]
+              },
+              "fontSize": {
+                      "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                      "display-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "headline-sm": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1;
+        }
+        /* Custom scrollbar for horizontal tabs */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md pb-20 md:pb-0">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-40 bg-surface dark:bg-background shadow-[0px_4px_12px_rgba(26,54,93,0.05)]">
+<div class="flex items-center justify-between px-container-margin py-md w-full max-w-7xl mx-auto">
+<!-- Leading Avatar -->
+<button class="active:opacity-80 transition-opacity">
+<img alt="User profile photo" class="w-8 h-8 rounded-full object-cover border border-outline-variant" data-alt="A professional headshot of a young business executive, wearing a crisp white shirt, softly lit in a modern office environment with blurred glass background. The image should convey a sense of calm authority and approachability, matching a clean, minimalist corporate identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8Y9CZQ9vRiFkzPJCt8yW7e3O0_FINTSPeA47UrPPo2PIo77EEmH9-7N2KuUPTl5hSug6pwVi_-8Ao0ykhMoU904Fp1U5CNtLLthm46Ic26iBu_Zuy4nCFDW6KVKWnphg4sGPwC9Z6OSCZZiLLvfOVMgi2mUmsbEtTIatxn6KxGWira64D5ZxcgvENsUTc5pph2aWA2m8xNz6jcyvvt4LS8_a06Z6FecVVUltJiTNaemuaG2Q2tLANww"/>
+</button>
+<!-- Headline -->
+<h1 class="font-headline-sm text-headline-sm-mobile md:font-headline-md md:text-headline-md text-primary dark:text-primary-fixed font-bold tracking-tight">SyncTeam</h1>
+<!-- Trailing Icon -->
+<button class="text-primary dark:text-primary-fixed hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors p-2 rounded-full active:opacity-80 transition-opacity">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-grow flex flex-col w-full max-w-7xl mx-auto px-container-margin py-md md:py-lg md:flex-row md:gap-lg md:px-lg">
+<!-- Desktop Sidebar Navigation (Hidden on Mobile) -->
+<aside class="hidden md:flex flex-col w-64 shrink-0 gap-sm sticky top-24 h-[calc(100vh-6rem)]">
+<nav class="flex flex-col gap-unit">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-secondary dark:text-secondary-fixed hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-headline-sm text-headline-sm">Home</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg bg-surface-container-low text-primary dark:text-primary-fixed font-bold" href="#">
+<span class="material-symbols-outlined filled" data-icon="calendar_today">calendar_today</span>
+<span class="font-headline-sm text-headline-sm">Meetings</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-secondary dark:text-secondary-fixed hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="assignment">assignment</span>
+<span class="font-headline-sm text-headline-sm">Tasks</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-secondary dark:text-secondary-fixed hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="font-headline-sm text-headline-sm">Activity</span>
+</a>
+</nav>
+<!-- Desktop FAB Equivalent -->
+<div class="mt-auto pb-lg">
+<button class="w-full flex items-center justify-center gap-sm bg-[#2D8A8A] text-on-primary py-md rounded-lg shadow-sm hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined">add</span>
+<span class="font-headline-sm text-headline-sm">Schedule Meeting</span>
+</button>
+</div>
+</aside>
+<!-- Content Area -->
+<div class="flex-grow flex flex-col gap-lg w-full max-w-3xl">
+<!-- Header & Filter Tabs -->
+<div class="flex flex-col gap-md">
+<div class="flex justify-between items-end">
+<div>
+<h2 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-primary">Today</h2>
+<p class="font-body-md text-body-md text-secondary mt-1">Thursday, Oct 12</p>
+</div>
+</div>
+<!-- Tabs -->
+<div class="flex items-center gap-sm overflow-x-auto no-scrollbar py-sm border-b border-outline-variant">
+<button class="px-md py-xs rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md whitespace-nowrap">Upcoming</button>
+<button class="px-md py-xs rounded-full border border-outline-variant text-secondary hover:bg-surface-container transition-colors font-label-md text-label-md whitespace-nowrap">Past</button>
+<button class="px-md py-xs rounded-full border border-outline-variant text-secondary hover:bg-surface-container transition-colors font-label-md text-label-md whitespace-nowrap">Drafts</button>
+</div>
+</div>
+<!-- Meeting List -->
+<div class="flex flex-col gap-md">
+<!-- Meeting Item 1 -->
+<div class="flex items-center bg-surface-container-lowest border border-outline-variant rounded-lg p-md shadow-[0px_4px_12px_rgba(26,54,93,0.05)] relative overflow-hidden group hover:border-[#2D8A8A] transition-colors cursor-pointer">
+<!-- Status Indicator (Teal for active/upcoming) -->
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-[#2D8A8A]"></div>
+<div class="flex-shrink-0 w-20 text-left">
+<p class="font-label-md text-label-md text-primary">09:00 AM</p>
+<p class="font-body-md text-body-md text-secondary text-xs">45 min</p>
+</div>
+<div class="w-px h-10 bg-outline-variant mx-md"></div>
+<div class="flex-grow flex flex-col justify-center min-w-0">
+<h3 class="font-headline-sm text-headline-sm text-primary truncate">Q3 Strategy Alignment</h3>
+<p class="font-body-md text-body-md text-secondary truncate text-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">videocam</span> Zoom Room A
+                        </p>
+</div>
+<div class="flex-shrink-0 flex items-center ml-md">
+<!-- Avatar Stack -->
+<div class="flex -space-x-2">
+<img alt="Attendee" class="w-8 h-8 rounded-full border-2 border-surface-container-lowest object-cover" data-alt="A small circular avatar showing a professional woman with glasses, smiling in a well-lit office setting. Corporate minimal style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeJPg65iZzQlbzwsuOsY4uBeee_TODD9hqZ815He8URchusDzBKYrJg98LpXi8ao8wiYWoMWL0UnHja50Dmb9HuHvUmHbl5hYrVbBjoaJvl-W1ZJbFGjxLk9HvunRj1URQsJqs0wpw-uX4NCQUY5weiNllYrYKM_JYB2S_XaKuN6JSp8NyLkUeqvt2qOU57qc5SBtOGVbfDxwb9jWoDxgzWNXfyUN50Kbg3-HsShUx8F1NYJf1Hz_OEQ"/>
+<img alt="Attendee" class="w-8 h-8 rounded-full border-2 border-surface-container-lowest object-cover" data-alt="A small circular avatar showing a man in a dark blue suit, looking focused. Clean white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuASiaiKIEQnOr-lS29fN9vgFC8ztlQXwCQGEOjTLg_aIl5YFri8U2D88Mlj3V2bpzmnX5lAfGj2hc_coFF4tQ4QoAgAVwa_LhXmpojIVIip2-ei3SG36-XPyq_4r7wdSrEimD4ppyfKAqNQ2rszbaNUV54P9zlNtBKcaWDLJ_9rXjL-kRv4gE1w6cKpXm6PIlhScTaRQIasFCgoO8FUmXGoTmnBZsDObswEW6CnIltsC7kgTA1fwx5jIg"/>
+<img alt="Attendee" class="w-8 h-8 rounded-full border-2 border-surface-container-lowest object-cover" data-alt="A small circular avatar showing a person with short hair, casual business attire, neutral background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTbFuQ6rTggK3BBul_P9vbqkD9z9Qxfj-UxVOWRDVr4T0Q699HncRgiQO36jYQnuWmqw3pDAM8EDpMvtxhLF574YRA6pZG5IozjQqZ6ry3XQ6y-Uft55P-ECA4maKw9Pu1jsgh0cBVu0N46ZOZ_CgsV2ydflHcMwizGetB0A4I0XY9tYUJlrCIPCexjb0UZ8Kov7FnwIUvSwfUVHTpi1QkMxTNgYWt9KfmtNWqpn_Rk9t5T-eXQgxatQ"/>
+<div class="w-8 h-8 rounded-full border-2 border-surface-container-lowest bg-surface-container-low flex items-center justify-center text-xs font-label-sm text-secondary z-10">+2</div>
+</div>
+</div>
+</div>
+<!-- Meeting Item 2 -->
+<div class="flex items-center bg-surface-container-lowest border border-outline-variant rounded-lg p-md shadow-[0px_4px_12px_rgba(26,54,93,0.05)] relative overflow-hidden group hover:border-[#2D8A8A] transition-colors cursor-pointer">
+<!-- Status Indicator (Teal for active/upcoming) -->
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-[#2D8A8A]"></div>
+<div class="flex-shrink-0 w-20 text-left">
+<p class="font-label-md text-label-md text-primary">11:30 AM</p>
+<p class="font-body-md text-body-md text-secondary text-xs">30 min</p>
+</div>
+<div class="w-px h-10 bg-outline-variant mx-md"></div>
+<div class="flex-grow flex flex-col justify-center min-w-0">
+<h3 class="font-headline-sm text-headline-sm text-primary truncate">Design Review: Mobile App</h3>
+<p class="font-body-md text-body-md text-secondary truncate text-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">meeting_room</span> Conference Room 4
+                        </p>
+</div>
+<div class="flex-shrink-0 flex items-center ml-md">
+<div class="flex -space-x-2">
+<img alt="Attendee" class="w-8 h-8 rounded-full border-2 border-surface-container-lowest object-cover" data-alt="A small circular avatar showing a creative professional with a beard, studio lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-mjw8i50cpAVhu3lS3YyMXn0dFMIju4iBdq7uF3ZDv6VpFbKwK-51M-Y5QyB-KsPOpfmC3K7k49eYbCML6vBLu3qbN9aQqc-XIYSW2IgIcTLI1FOMCW_5kJ4dZ-yiDi6hoZ-ZT4qauaq1nZamOxe8uN2OFNZ0jK8O5Xvp0yZJwt9asTx4bY2w2VsTy07rs3sqKSx6NctexV3ylT1331IpMndKog0yJJ67LB11-yJOYzz63mpoXk4Nhg"/>
+<img alt="Attendee" class="w-8 h-8 rounded-full border-2 border-surface-container-lowest object-cover" data-alt="A small circular avatar showing a woman with dark hair in a bright modern workspace." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBupMFVVx970ebx9q8NFJzf0Byeli9Fy4gcKgDWwAnKtn3uetrciZEyzBmlXN8FSSYO91gVpp0yFUtMi7IJ3aCHHKT7ZNRIf7aP_cog3g4QqCzvKD3WMQbNgzUFCLI0YBnt1z9yv1RhtA0TSogp5OQ4JXltOHtNerq1nlRH7hY5HMQQbhNfyc_7pI1Nx7mgG2v5jbwAuexuIUm03jctrL6ONU-LkYjNDvUtzMQtVgPjw8UyLKbATov8vQ"/>
+</div>
+</div>
+</div>
+<!-- Meeting Item 3 (Later) -->
+<div class="flex items-center bg-surface-container-lowest border border-outline-variant rounded-lg p-md shadow-[0px_4px_12px_rgba(26,54,93,0.05)] relative overflow-hidden group hover:border-[#2D8A8A] transition-colors cursor-pointer opacity-80">
+<!-- Status Indicator (Gray for pending later) -->
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-outline-variant"></div>
+<div class="flex-shrink-0 w-20 text-left">
+<p class="font-label-md text-label-md text-secondary">02:00 PM</p>
+<p class="font-body-md text-body-md text-secondary text-xs">1 hr</p>
+</div>
+<div class="w-px h-10 bg-outline-variant mx-md"></div>
+<div class="flex-grow flex flex-col justify-center min-w-0">
+<h3 class="font-headline-sm text-headline-sm text-primary truncate">1:1 Performance Sync</h3>
+<p class="font-body-md text-body-md text-secondary truncate text-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">call</span> Phone Call
+                        </p>
+</div>
+<div class="flex-shrink-0 flex items-center ml-md">
+<div class="flex -space-x-2">
+<img alt="Attendee" class="w-8 h-8 rounded-full border-2 border-surface-container-lowest object-cover" data-alt="A small circular avatar showing a manager in a corporate setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAllaDkkBvw6XYuAM_P6BZ9DDHSaAIXz-RAC8mDb2jti1GHRHVp7-DSSFh-Z0uBlDJQhkr77lyrS-R4_11S_NrJV7tEGYUMFR7pKeHmnVO-vYonVVsf--OEHalRsygpNJIInHHpge4V9RSiIBvi0lpot2fGVKKkgGVPw2Fncc20OWHSTSW8JcZcAIFailZa1YjiZwxtuFLCEX47g_miy-TyqyG9gOajbCiXQeSAMePieL6o3OIjHBmnA"/>
+</div>
+</div>
+</div>
+</div>
+<!-- End of list padding for FAB -->
+<div class="h-24 md:hidden"></div>
+</div>
+</main>
+<!-- Mobile Floating Action Button (FAB) - Hidden on desktop -->
+<button class="md:hidden fixed bottom-24 right-container-margin w-14 h-14 bg-[#2D8A8A] text-on-primary rounded-2xl shadow-lg flex items-center justify-center hover:opacity-90 active:scale-95 transition-all z-40">
+<span class="material-symbols-outlined">add</span>
+</button>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 bg-surface-container-lowest dark:bg-surface-dim shadow-[0px_-2px_8px_rgba(26,54,93,0.05)]">
+<div class="flex justify-around items-center h-16 w-full px-4">
+<!-- Home (Inactive) -->
+<button class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed hover:opacity-80 transition-opacity active:scale-95 duration-200 gap-1 w-16">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</button>
+<!-- Meetings (Active) -->
+<button class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed relative after:content-[''] after:w-1 after:h-1 after:bg-[#2D8A8A] after:rounded-full after:mt-1 hover:opacity-80 transition-opacity active:scale-95 duration-200 gap-1 w-16">
+<span class="material-symbols-outlined filled" data-icon="calendar_today">calendar_today</span>
+<span class="font-label-sm text-label-sm">Meetings</span>
+</button>
+<!-- Tasks (Inactive) -->
+<button class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed hover:opacity-80 transition-opacity active:scale-95 duration-200 gap-1 w-16">
+<span class="material-symbols-outlined" data-icon="assignment">assignment</span>
+<span class="font-label-sm text-label-sm">Tasks</span>
+</button>
+<!-- Activity (Inactive) -->
+<button class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed hover:opacity-80 transition-opacity active:scale-95 duration-200 gap-1 w-16">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="font-label-sm text-label-sm">Activity</span>
+</button>
+</div>
+</nav>
+</body></html>

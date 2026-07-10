@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tasks - Mobile Productivity App</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-bright": "#f7fafc",
+                        "tertiary-fixed-dim": "#7ed5d4",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-primary-container": "#86a0cd",
+                        "primary-container": "#1a365d",
+                        "surface-tint": "#455f88",
+                        "surface-container-low": "#f1f4f6",
+                        "secondary-fixed-dim": "#bcc7dd",
+                        "outline": "#74777f",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#004f50",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#3c475a",
+                        "on-tertiary-container": "#55acac",
+                        "surface-dim": "#d7dadc",
+                        "surface-container-high": "#e5e9eb",
+                        "on-secondary-container": "#586377",
+                        "on-surface": "#181c1e",
+                        "secondary-fixed": "#d8e3fa",
+                        "on-surface-variant": "#43474e",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-primary": "#adc7f7",
+                        "on-primary-fixed": "#001b3c",
+                        "surface-variant": "#e0e3e5",
+                        "outline-variant": "#c4c6cf",
+                        "on-tertiary-fixed": "#002020",
+                        "tertiary-container": "#003d3d",
+                        "on-secondary-fixed": "#111c2c",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#d6e3ff",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#9bf1f1",
+                        "on-background": "#181c1e",
+                        "on-primary-fixed-variant": "#2d476f",
+                        "primary-fixed-dim": "#adc7f7",
+                        "secondary-container": "#d5e0f7",
+                        "background": "#f7fafc",
+                        "surface-container": "#ebeef0",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#2d3133",
+                        "secondary": "#545f72",
+                        "inverse-on-surface": "#eef1f3",
+                        "primary": "#002045",
+                        "tertiary": "#002626",
+                        "surface": "#f7fafc"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "container-margin": "20px",
+                        "gutter": "16px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "unit": "4px",
+                        "xs": "4px",
+                        "xl": "32px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "display-lg-mobile": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "500" }],
+                        "display-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .task-card-active::before {
+            content: '';
+            position: absolute;
+            left: -1px;
+            top: -1px;
+            bottom: -1px;
+            width: 4px;
+            background-color: #2D8A8A;
+            border-top-left-radius: 0.5rem;
+            border-bottom-left-radius: 0.5rem;
+        }
+        .task-card-pending::before {
+            content: '';
+            position: absolute;
+            left: -1px;
+            top: -1px;
+            bottom: -1px;
+            width: 4px;
+            background-color: #e2e8f0;
+            border-top-left-radius: 0.5rem;
+            border-bottom-left-radius: 0.5rem;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-bright text-on-surface font-body-md min-h-screen flex flex-col antialiased pb-[80px]">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-40 bg-surface shadow-[0px_4px_12px_rgba(26,54,93,0.05)]">
+<div class="flex items-center justify-between px-container-margin py-md w-full max-w-7xl mx-auto">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant">
+<img alt="User profile photo" class="w-full h-full object-cover" data-alt="A professional headshot of a corporate user, modern, clean lighting, white background, suitable for a mobile app avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBk-NpT28jaluJeGvuu1t0N6hyw_Sea0pOnZNkc5vkKO0g-3Q7srYfH2XcZC-XXGbdx8PBWsT9xMg9pxWHewE_lwHsrcA3jKgwACimheDiKklKApkM2bux2ZIVIcprOC2U5oqwvooB4hUJ8XjUZTycdggMyMe0jexle57kZQe5X3QP9fssTD5xRefgCDZirDybEO5q5D0eZkM6ccX-INYX_xGeFnGKBIFItBE0qB7Dg4-6RD0k2-qks_w"/>
+</div>
+<h1 class="font-headline-sm text-headline-sm-mobile md:font-headline-md md:text-headline-md text-primary font-bold">SyncTeam</h1>
+<button class="w-10 h-10 flex items-center justify-center text-primary hover:bg-surface-container-low transition-colors rounded-full active:opacity-80 transition-opacity">
+<span class="material-symbols-outlined">search</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 w-full max-w-7xl mx-auto px-container-margin py-lg space-y-lg">
+<!-- View Controls & Quick Add -->
+<div class="flex justify-between items-center bg-surface-container-lowest p-md rounded-lg shadow-[0px_4px_12px_rgba(26,54,93,0.05)] border border-surface-variant">
+<div class="flex space-x-md">
+<button class="text-primary font-headline-sm text-headline-sm border-b-2 border-primary pb-1">To Do</button>
+<button class="text-secondary font-headline-sm text-headline-sm pb-1 opacity-70">In Progress</button>
+<button class="text-secondary font-headline-sm text-headline-sm pb-1 opacity-70">Done</button>
+</div>
+</div>
+<!-- Task List Bento Layout -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Category Column: To Do -->
+<div class="space-y-gutter">
+<div class="flex items-center justify-between mb-sm">
+<h2 class="font-headline-sm text-headline-sm text-primary">To Do <span class="text-secondary font-body-md ml-2 text-sm">3</span></h2>
+<button class="text-[#2D8A8A] hover:bg-[#2D8A8A]/10 rounded-full p-1 transition-colors">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+<!-- Task Card 1 (Active/High) -->
+<div class="relative bg-surface-container-lowest rounded-lg border border-surface-variant p-md shadow-[0px_4px_12px_rgba(26,54,93,0.05)] task-card-active flex flex-col gap-sm">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-sm text-headline-sm text-primary">Finalize Q3 Marketing Strategy</h3>
+<span class="bg-[#ffdad6] text-[#93000a] font-label-sm text-label-sm px-2 py-1 rounded">High</span>
+</div>
+<p class="font-body-md text-body-md text-secondary line-clamp-2">Review current metrics and propose new acquisition channels for the upcoming quarter.</p>
+<div class="flex justify-between items-center mt-sm pt-sm border-t border-surface-variant">
+<div class="flex items-center text-secondary font-label-md text-label-md gap-1">
+<span class="material-symbols-outlined" style="font-size: 16px;">calendar_today</span>
+<span>Oct 15</span>
+</div>
+<div class="flex -space-x-2">
+<img alt="Assignee" class="w-6 h-6 rounded-full border border-surface-container-lowest" data-alt="Small circular avatar of a professional team member, clean lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuChaZKnIen9IjpOeJ_BaAbIvFG52t-rQtfEfdXKRZCddSCr8smN2DLb4bn_iY8atc38LcZentsdkHJ9-QCzpInAeZfRlezDsKnmYOkc_wY63XMtFKeOVfozrI17oCsCkhatJUUoMdpZuHoZfrflBVR0yvCofXUkSsUAE3kMBQtHwE1v0A8GT4P20AuOT_ZrLmmPyx6G_mPuHMbwmGbdtX2JFO4Z35_wuzHJ9T5mM6gjfhxVL9pGGiVC3w"/>
+</div>
+</div>
+</div>
+<!-- Task Card 2 (Pending/Med) -->
+<div class="relative bg-surface-container-lowest rounded-lg border border-surface-variant p-md shadow-[0px_4px_12px_rgba(26,54,93,0.05)] task-card-pending flex flex-col gap-sm">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-sm text-headline-sm text-primary">Prepare Board Deck</h3>
+<span class="bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm px-2 py-1 rounded">Med</span>
+</div>
+<p class="font-body-md text-body-md text-secondary line-clamp-2">Compile financial slides and update the executive summary.</p>
+<div class="flex justify-between items-center mt-sm pt-sm border-t border-surface-variant">
+<div class="flex items-center text-secondary font-label-md text-label-md gap-1">
+<span class="material-symbols-outlined" style="font-size: 16px;">calendar_today</span>
+<span>Oct 18</span>
+</div>
+</div>
+</div>
+<!-- Task Card 3 (Pending/Low) -->
+<div class="relative bg-surface-container-lowest rounded-lg border border-surface-variant p-md shadow-[0px_4px_12px_rgba(26,54,93,0.05)] task-card-pending flex flex-col gap-sm">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-sm text-headline-sm text-primary">Update Internal Wiki</h3>
+<span class="bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm px-2 py-1 rounded">Low</span>
+</div>
+<p class="font-body-md text-body-md text-secondary line-clamp-2">Document the new onboarding process for remote contractors.</p>
+<div class="flex justify-between items-center mt-sm pt-sm border-t border-surface-variant">
+<div class="flex items-center text-secondary font-label-md text-label-md gap-1">
+<span class="material-symbols-outlined" style="font-size: 16px;">calendar_today</span>
+<span>Oct 22</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Action Button (Quick Add) -->
+<button class="fixed bottom-[88px] right-container-margin w-14 h-14 bg-[#2D8A8A] text-white rounded-full shadow-lg flex items-center justify-center hover:bg-[#004f50] transition-colors md:hidden z-50">
+<span class="material-symbols-outlined" style="font-size: 28px;">add</span>
+</button>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface-container-lowest dark:bg-surface-dim shadow-[0px_-2px_8px_rgba(26,54,93,0.05)] md:hidden">
+<div class="flex justify-around items-center h-16 w-full px-4 max-w-7xl mx-auto">
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed hover:opacity-80 transition-opacity active:scale-95 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed hover:opacity-80 transition-opacity active:scale-95 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-label-sm text-label-sm mt-1">Meetings</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed relative after:content-[''] after:w-1 after:h-1 after:bg-[#2D8A8A] after:rounded-full after:mt-1 hover:opacity-80 transition-opacity active:scale-95 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">assignment</span>
+<span class="font-label-sm text-label-sm mt-1 font-semibold">Tasks</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed hover:opacity-80 transition-opacity active:scale-95 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">notifications</span>
+<span class="font-label-sm text-label-sm mt-1">Activity</span>
+</a>
+</div>
+</nav>
+</body></html>
